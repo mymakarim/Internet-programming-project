@@ -198,6 +198,7 @@ text-decoration: none;
     width: 100%;
     z-index: 3;
     padding: auto 40px ;
+    top: 0;
   }
 
   .header ul {
@@ -342,4 +343,7 @@ input.error {
   display: none;
   color: red;
   font-size: 11px;
+}
+#notemptycart {
+  display: none;
 }

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contact Page</title>
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/form.css">
+
+</head>
+<body>
+    <header class="header" id="header">
+        <a href="" class="logo">Logo Text</a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+          <li><a href="#work">Our Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#careers">Careers</a></li>
+          <li><a href="#contact">Contact</a></li>
+
+    <li class="submenu">
+        <a><div class="total-container"> <span id="total">0</span> <img src="img/cart.png" id="img-cart"></div></a>
+        <div id="shopping-cart">
+            <p id="emptycart">Empty Cart!</p>
+            <div id="notemptycart">
+                <table id="cart-content" class="u-full-width">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <button id="clear-cart" class="button u-full-width flex-center">Clear Cart</button>
+                <hr>
+                <div class="payment-card">
+                    <p><b>Choose your payment Method:</b></p>
+                    <div class="flex-start">
+                        <div class="flex-start">
+                            <input type="radio" id="mastercard" name="payment_method" value="mastercard">
+                            <label for="mastercard">Master Card</label>
+                        </div>
+                        &nbsp;
+                        &nbsp;
+                        <div class="flex-start">
+                            <input type="radio" id="visa" name="payment_method" value="visa">
+                            <label for="visa">Visa Card</label>
+                        </div>
+                    </div>
+                    <p class="errorMessage" id="typeError">Please select a card type</p>
+                    <p><b>Name on the card:</b></p>
+                    <div class="flex-start">
+                        <input type="text" class="cardName" maxlength="15" name="cardName1" id="cardName1">
+                        <input type="text" class="cardName" maxlength="15" name="cardName2" id="cardName2">
+                        <input type="text" class="cardName" maxlength="15" name="cardName3" id="cardName3">
+                        <input type="text" class="cardName" maxlength="15" name="cardName4" id="cardName4">
+                    </div>
+                    <p class="errorMessage" id="cardNameError">Please enter a valid card name</p>
+                    <p>
+                        <b>Expiry date</b><br />
+                        <select id="exMonth" title="select a month">
+                        <option value="0">Enter month</option>
+                            <option value="01">January</option>
+                            <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+
+                        <select id="exYear" title="select a year">
+                         <option value="0">Enter year</option>
+                            <option value="2020">2020</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
+                            <option value="2031">2031</option>
+                        </select>
+                        </p>
+                        <p class="errorMessage" id="exError">The expiry date is before today's date.</p>
+
+                    <p><b>CVV:</b></p>
+                    <input type="text" name="cvv" id="cvv" maxlength="3" pattern="[0-9]{3}">
+                    <p class="errorMessage" id="cvvError">Please Enter a valid CVV</p>
+                </div>
+                <p class="totalPrice"><b>Total Price:</b> <span id="totalPrice">0</span> USD</p>
+                <p class="deliveryPrice"><b>Delivery Price:</b> <span id="deliveryPrice">0</span> USD</p>
+                <button id="checkout-cart" onclick="checkout()" class="button u-full-width flex-center">Checkout</button>
+            </div>
+        </div>
+</li>
+        </ul>
+      </header>
+
+    <div class="content">
+        <h1>Contact Us</h1>
+        <form action="https://google.com" class="form" id="form">
+            <div class="float-left">
+                <div class="input-holder">
+                    <input type="text" name="fname" placeholder="First Name" class="form-control" data-name="name">
+                    <span class="err-txt">Please fill in first name.</span>
+                </div>
+                <div class="input-holder">
+                    <input type="text" name="sname" placeholder="Sur Name" class="form-control" data-name="name">
+                    <span class="err-txt">Please fill in sur name.</span>
+                </div>
+                <div class="input-holder">
+                    <input type="email" name="email" placeholder="Email" class="form-control">
+                    <span class="err-txt">Please fill in email.</span>
+                </div>
+                <div class="input-holder">
+                    <input type="tel" name="phone" placeholder="Phone" class="form-control">
+                    <span class="err-txt">Please fill in phone number.</span>
+                </div>
+            </div>
+            <div class="float-left">
+                <div class="input-holder">
+                    <textarea name="textarea" id="" cols="30" rows="15" placeholder="Text" class="form-control"></textarea>
+                    <span class="err-txt">Please fill in some text</span>
+                </div>
+                <div class="input-holder">
+                    <input type="submit" value="Send" class="btn-submit">
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <footer id="footer" class="footer">
+        <div class="container">
+            <div class="row">
+                    <div class="four columns">
+                            <nav id="primary" class="menu">
+                                <a class="link" href="#">For Business</a>
+                                <a class="link" href="#">Become an Instructor</a>
+                                <a class="link" href="#">Mobile Applications</a>
+                                <a class="link" href="#">Support</a>
+                                <a class="link" href="#">Help</a>
+                            </nav>
+                    </div>
+                    <div class="four columns">
+                            <nav id="secondary" class="menu">
+                                <a class="link" href="#">About Us</a>
+                                <a class="link" href="#">Work with us</a>
+                                <a class="link" href="#">Blog</a>
+                            </nav>
+                    </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/form.js"></script>
+
+</body>
+</html>
