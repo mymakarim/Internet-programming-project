@@ -7,6 +7,21 @@ const courses= document.querySelector('#courses-list'),
       clearCartBtn=document.querySelector('#clear-cart');
 
 
+      function checkEmpty(){
+        console.log("parseInt(total.textContent): " + parseInt(total.textContent));
+        if(parseInt(total.textContent) < 1){
+            // hide everything and show an empty cart text
+            document.querySelector('#notemptycart').setAttribute("style", "display: none;");
+            document.querySelector('#emptycart').setAttribute("style", "display: inline-block;");
+          }else{
+            document.querySelector('#notemptycart').setAttribute("style", "display: block;");
+            document.querySelector('#emptycart').setAttribute("style", "display: none;");
+          }
+      }
+
+
+      checkEmpty();
+
     function onSelect_change(domEvent){
         // get the selected value :
         var selectedValue = domEvent.target[domEvent.target.selectedIndex].value;
@@ -34,12 +49,6 @@ const courses= document.querySelector('#courses-list'),
                 item.textContent = "UPDATED PRICE BY PROPERTY TO: " + parseInt(selectedValue);
             }
         })
-        // console.log("PICKONE: ", pickOne);
-
-        // pickOne.map(child => { // loop over his children using .map() --> see MDN for more
-        //     if(child.classList.contains('price-int')) // we place a test where we determine our choice
-        //         console.log(child);
-        //     })
     }
 
     var selectElem = document.getElementsByClassName('property');
@@ -57,7 +66,6 @@ function loadEventListeners(){
     courses.addEventListener('click', buycourse);
     shoppingCartContent.addEventListener('click', removeCourse);
     clearCartBtn.addEventListener('click', clearCart);
-    // document.addEventListener('DOMContentLoaded', getFromLocalStorage);
 }
 
 
@@ -115,8 +123,7 @@ function addIntoCart(course){
 
     `;
     shoppingCartContent.appendChild(row);
-
-    // saveIntoStorage(course);
+    checkEmpty();
 }
 
 function removeCourse(e){
@@ -132,6 +139,7 @@ function removeCourse(e){
             deliveryPrice.textContent = 0;
         }
     }
+    checkEmpty();
 }
 
 function clearCart(e){
@@ -141,59 +149,22 @@ function clearCart(e){
     deliveryPrice.textContent = 0;
 }
 
-function saveIntoStorage(course){
-
-let courses= getCoursesFromStorage();
-
-courses.push(course);
-
-localStorage.setItem('courses', JSON.stringify(courses));
-}
-
-function getCoursesFromStorage(){
-    let courses;
-
-    if(localStorage.getItem('courses')===null){
-        courses=[];
-    } else{
-        course= JSON.parse(localStorage.getItem('courses'));
-
-    }
-    return courses;
-}
-
-function getFromLocalStorage(){
-    let coursesLS= getCoursesFromStorage();
-
-
-     coursesLS.forEach(function(course) {
-
-
-        const row= document.createElement('tr');
-        row.innerHTML= `
-    <tr>
-    <td>
-    <img src="${course.image}" width=100>
-    </td>
-    <td> ${course.title} </td>
-    <td> ${course.price} </td>
-    <td> <span class="remove" data-id="${course.id}">X</span> </td>
-
-
-    </tr>
-
-    `;
-        shoppingCartContent.appendChild(row);
-     });
-
-}
 
 function checkout(){
-
     // get all fields, values, and errorfields
     var cvv = document.getElementById('cvv');
     var cvvValue = cvv.value;
     var cvvError = document.getElementById('cvvError');
+
+    var typeValue = document.querySelector( 'input[name="payment_method"]:checked');
+    var typeError = document.getElementById('typeError');
+
+    if(typeValue != null){
+        typeError.setAttribute("style", "display: none;");
+    }else{
+        typeError.setAttribute("style", "display: block;");
+        return;
+    }
 
     var cardNameRGEX = /^[A-Za-z]{1,15}$/;
     var cardNameError = document.getElementById('cardNameError');
@@ -203,11 +174,9 @@ function checkout(){
         var cardNameValue = cardName.value;
         if (!cardNameRGEX.test(cardNameValue)) {
             cardNameError.setAttribute("style", "display: block;");
+            return;
         }
     })
-
-    var typeValue = document.querySelector( 'input[name="payment_method"]:checked');
-    var typeError = document.getElementById('typeError');
 
     // var phoneRGEX = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/;
     // var postalRGEX = /^[A-Z]{1,2}[0-9]{1,2} ?[0-9][A-Z]{2}$/i;
@@ -226,6 +195,7 @@ function checkout(){
 
     if (someday < today) {
         exError.setAttribute("style", "display: block;");
+        return;
     }else{
         exError.setAttribute("style", "display: none;");
     }
@@ -236,12 +206,20 @@ function checkout(){
     }else{
         cvv.classList.add("error");
         cvvError.setAttribute("style", "display: block;");
+        return;
     }
 
-    if(typeValue != null){
-        typeError.setAttribute("style", "display: none;");
-    }else{
-        typeError.setAttribute("style", "display: block;");
+    if(parseInt(total.textContent) <1){
+        alert("There is no item in your basket!");
+        return;
+    }
+
+    let text = prompt("Your calculated total cost is (" + totalPrice.textContent + ") USD Please confirm by typing " + totalPrice.textContent + " below!");
+    if (text == totalPrice.textContent) {
+      alert(`Thank you for shopping with us!`);
+      clearCart();
+    } else {
+      alert(`Application withdraw!`)
     }
 
   }

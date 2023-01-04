@@ -54,7 +54,8 @@ ul {
     display: none;
     height: 400px;
     overflow-y: scroll;
-    border: 2px solid red;
+    scrollbar-width: 1px;
+    border: 2px solid black;
 }
 .submenu:hover #shopping-cart{
     display: block;
