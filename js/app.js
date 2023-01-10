@@ -5,6 +5,7 @@ const courses= document.querySelector('#courses-list'),
       totalPrice = document.querySelector('#totalPrice'),
       deliveryPrice = document.querySelector('#deliveryPrice'),
       clearCartBtn=document.querySelector('#clear-cart');
+      menuToggleBtn=document.querySelector('#menu-toggle');
 
 
       function checkEmpty(){
@@ -18,8 +19,6 @@ const courses= document.querySelector('#courses-list'),
             document.querySelector('#emptycart').setAttribute("style", "display: none;");
           }
       }
-
-
       checkEmpty();
 
     function onSelect_change(domEvent){
@@ -80,11 +79,13 @@ loadEventListeners();
 
 
 function loadEventListeners(){
-    courses.addEventListener('click', buycourse);
+    if(courses){
+        courses.addEventListener('click', buycourse);
+    }
     shoppingCartContent.addEventListener('click', removeCourse);
     clearCartBtn.addEventListener('click', clearCart);
+    menuToggleBtn.addEventListener('click', toggleMenu);
 }
-
 
 
 
@@ -158,6 +159,15 @@ function removeCourse(e){
     }
     checkEmpty();
 }
+
+function toggleMenu() {
+    var x = document.querySelector(".menu");
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+  }
 
 function clearCart(e){
     shoppingCartContent.innerHTML='';

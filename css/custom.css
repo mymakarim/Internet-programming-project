@@ -1,5 +1,7 @@
 body {
-    background-color: #fff6f6
+    background-color: #fff6f6;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 h1 {
     text-align: center;
@@ -233,7 +235,8 @@ text-decoration: none;
 
   .header .menu {
     clear: both;
-    max-height: 0;
+    display: block;
+    background-color: white;
     transition: max-height .2s ease-out;
   }
 
@@ -400,4 +403,9 @@ input.error {
 
 .content {
     margin-top: 120px;
+}
+@media screen and (max-width: 660px) {
+  .header .menu {
+    display: none;
+  }
 }
