@@ -28,9 +28,23 @@ const courses= document.querySelector('#courses-list'),
     // you can also do it using domEvent.target.value but the other solution allows you to get every option's property you want
         console.log("Selected: " + selectedValue);
         var card = domEvent.target.parentNode.parentNode;
+        var cardParent = card.parentNode;
 
         const itemsArray = Array.from(card.children) // make Array from his children
+        const itemsParentArray = Array.from(cardParent.children) // make Array from his children
+        const imageArray = ["img/course1.jpg","img/course2.jpg","img/course3.jpg","img/course4.jpg","img/course5.jpg"];
 
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        itemsParentArray.map(item => { // loop over his children using .map() --> see MDN for more
+            if(item.classList.contains('course-image')){ // we place a test where we determine our choice
+                item.src = imageArray[getRandomInt(0,4)];
+            }
+        })
         itemsArray.map(item => { // loop over his children using .map() --> see MDN for more
             if(item.classList.contains('price')){ // we place a test where we determine our choice
                 var childsArray = Array.from(item.children); // make Array from his children
@@ -47,6 +61,9 @@ const courses= document.querySelector('#courses-list'),
 
             if(item.classList.contains('desc')){ // we place a test where we determine our choice
                 item.textContent = "UPDATED PRICE BY PROPERTY TO: " + parseInt(selectedValue);
+            }
+            if(item.classList.contains('title')){ // we place a test where we determine our choice
+                item.textContent = "UPDATED TITLE BY: " + parseInt(selectedValue);
             }
         })
     }
