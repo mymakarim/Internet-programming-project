@@ -6,6 +6,9 @@ const courses= document.querySelector('#courses-list'),
       deliveryPrice = document.querySelector('#deliveryPrice'),
       clearCartBtn=document.querySelector('#clear-cart');
       menuToggleBtn=document.querySelector('#menu-toggle');
+      var cartItemTags = document.querySelectorAll("tr.cart-item");
+      var cartItemOBJ = {};
+
 
 
       function checkEmpty(){
@@ -47,10 +50,6 @@ const courses= document.querySelector('#courses-list'),
         itemsArray.map(item => { // loop over his children using .map() --> see MDN for more
             if(item.classList.contains('price')){ // we place a test where we determine our choice
                 var childsArray = Array.from(item.children); // make Array from his children
-                // return item.children;
-
-                // item.children[2].textContent = parseInt()
-
                 childsArray.map(child => { // loop over his children using .map() --> see MDN for more
                     if(child.classList.contains('price-int')){ // we place a test where we determine our choice
                         child.textContent = parseInt(selectedValue);
@@ -61,8 +60,13 @@ const courses= document.querySelector('#courses-list'),
             if(item.classList.contains('desc')){ // we place a test where we determine our choice
                 item.textContent = "UPDATED PRICE BY PROPERTY TO: " + parseInt(selectedValue);
             }
+
+            if(item.classList.contains('add-to-cart')){ // we place a test where we determine our choice
+                item.setAttribute("data-id", "UPDATED-TITLE-BY-" + parseInt(selectedValue));
+            }
+
             if(item.classList.contains('title')){ // we place a test where we determine our choice
-                item.textContent = "UPDATED TITLE BY: " + parseInt(selectedValue);
+                item.textContent = "UPDATED-TITLE-BY-" + parseInt(selectedValue);
             }
         })
     }
@@ -128,34 +132,124 @@ function addIntoCart(course){
         deliveryPrice.textContent = 0;
     }
 
-    const row= document.createElement('tr');
-    row.innerHTML= `
-    <tr>
-    <td>
-    <img src="${course.image}" width=100>
-    </td>
-    <td> ${course.title} </td>
-    <td> ${course.price} </td>
-    <td> <span class="remove" data-id="${course.id}" data-price="${course.price}">X</span> </td>
-    </tr>
+    //add new cartItem
+    // if no previous record
+    var found = false;
+    Object.keys(cartItemOBJ).forEach(key => {
+        console.log("KEY: "+ key);
+        console.log("COURSE ID: "+ course.id);
+        if(key == course.id){
+            found = true;
+            console.log("FOUND "+ key + " == "+ course.id);
+            cartItemOBJ[course.id].qty += 1;
+        }
+    });
+    console.log("OBJECT LENGTHJ: "+ Object.keys(cartItemOBJ).length);
 
-    `;
-    shoppingCartContent.appendChild(row);
+    if(!found){
+        console.log("NOT FOUND");
+        if(Object.keys(cartItemOBJ).length === 0){
+            cartItemOBJ = {[course.id]: {id: course.id, title: course.title, image: course.image, price: course.price, qty: 1}}
+        }else{
+            console.log("CART ITEM LENGTH: "+ Object.keys(cartItemOBJ).length);
+            cartItemOBJ = { ...cartItemOBJ, [course.id]: {id: course.id, title: course.title, image: course.image, price: course.price, qty: 1}}
+        }
+    }
+
+    //re-render cartItems
+    // console.log("CART TIEM OBG IN ADDINTOCART: ");
+    // console.log(cartItemOBJ);
+    displayCartItems(cartItemOBJ)
+}
+
+function displayCartItems(cartItemOBJ) {
+    shoppingCartContent.innerHTML = "";
+
+    // console.log("CART TIEM OBG IN DISPLAY: ");
+    // console.log(cartItemOBJ);
+    Object.keys(cartItemOBJ).forEach(key => {
+        const row= document.createElement('tr');
+        row.innerHTML= `
+        <tr class="cart-item">
+        <td>
+        <img src="${cartItemOBJ[key].image}" width=100>
+        </td>
+        <td> ${cartItemOBJ[key].title} </td>
+        <td> ${cartItemOBJ[key].price} </td>
+        <td> <span class="flex-center"> <span class="minus cursor-pointer rounded flex-center" data-id="${cartItemOBJ[key].id}"  data-price="${cartItemOBJ[key].price}">-</span> ${cartItemOBJ[key].qty} <span class="plus cursor-pointer rounded flex-center" data-id="${cartItemOBJ[key].id}" data-price="${cartItemOBJ[key].price}">+</span> </span></td>
+        <td> <span class="remove" data-id="${cartItemOBJ[key].id}" data-price="${cartItemOBJ[key].price}">X</span> </td>
+        </tr>`;
+        shoppingCartContent.appendChild(row);
+      });
+
+    //   console.log("CART TIEM OBG AFTER DISPLAY: ");
+    //   console.log(cartItemOBJ);
     checkEmpty();
 }
 
-function removeCourse(e){
-    if(e.target.classList.contains('remove')){
-        var price = parseInt(e.target.getAttribute("data-price"));
-        e.target.parentElement.parentElement.remove();
-        total.textContent = parseInt(total.textContent) - 1;
-        totalPrice.textContent = parseInt(totalPrice.textContent) - parseInt(price);
+function minus(price, howmany){
+    total.textContent = parseInt(total.textContent) - howmany;
+    totalPrice.textContent = (parseInt(totalPrice.textContent) - (howmany * price)) ;
 
-        if(parseInt(totalPrice.textContent) < 1000){
-            deliveryPrice.textContent = parseInt(totalPrice.textContent)*0.10;
-        }else{
-            deliveryPrice.textContent = 0;
-        }
+                if(parseInt(totalPrice.textContent) < 1000){
+                    deliveryPrice.textContent = parseInt(totalPrice.textContent)*0.10;
+                }else{
+                    deliveryPrice.textContent = 0;
+                }
+}
+
+function plus(price, howmany){
+    total.textContent = parseInt(total.textContent) + howmany;
+                totalPrice.textContent = (parseInt(totalPrice.textContent) + (price * howmany) );
+
+                if(parseInt(totalPrice.textContent) < 1000){
+                    deliveryPrice.textContent = parseInt(totalPrice.textContent)*0.10;
+                }else{
+                    deliveryPrice.textContent = 0;
+                }
+}
+
+function removeCourse(e){
+    if(e.target.classList.contains('minus')){
+        Object.keys(cartItemOBJ).forEach(key => {
+            if(key == e.target.getAttribute("data-id")){
+                cartItemOBJ[key].qty -= 1;
+                minus(parseInt(e.target.getAttribute("data-price")), 1);
+            }
+        });
+        displayCartItems(cartItemOBJ)
+    }
+    if(e.target.classList.contains('plus')){
+        Object.keys(cartItemOBJ).forEach(key => {
+            if(key == e.target.getAttribute("data-id")){
+                cartItemOBJ[key].qty += 1;
+                plus(parseInt(e.target.getAttribute("data-price")), 1);
+            }
+        });
+        displayCartItems(cartItemOBJ)
+    }
+    if(e.target.classList.contains('remove')){
+        // var price = parseInt(e.target.getAttribute("data-price"));
+        // var howmany = 1;
+        // e.target.parentElement.parentElement.remove();
+        // total.textContent = parseInt(total.textContent) - howmany;
+        // totalPrice.textContent = parseInt(totalPrice.textContent) - (howmany * parseInt(price));
+
+        // if(parseInt(totalPrice.textContent) < 1000){
+        //     deliveryPrice.textContent = parseInt(totalPrice.textContent)*0.10;
+        // }else{
+        //     deliveryPrice.textContent = 0;
+        // }
+
+        Object.keys(cartItemOBJ).forEach(key => {
+            if(key == e.target.getAttribute("data-id")){
+                minus(parseInt(e.target.getAttribute("data-price")), cartItemOBJ[key].qty);
+                // remove from html
+                delete cartItemOBJ[key];
+            }
+        });
+        displayCartItems(cartItemOBJ)
+
     }
     checkEmpty();
 }
@@ -241,8 +335,8 @@ function checkout(){
         return;
     }
 
-    let text = prompt("Your calculated total cost is (" + totalPrice.textContent + ") USD Please confirm by typing " + totalPrice.textContent + " below!");
-    if (text == totalPrice.textContent) {
+    let text = prompt("Your calculated total cost is (" + (parseInt(totalPrice.textContent) + parseInt(deliveryPrice.textContent))  + ") USD Please confirm by typing " + (parseInt(totalPrice.textContent) + parseInt(deliveryPrice.textContent)) + " below!");
+    if (text == (parseInt(totalPrice.textContent) + parseInt(deliveryPrice.textContent))) {
       alert(`Thank you for shopping with us!`);
       clearCart();
     } else {
