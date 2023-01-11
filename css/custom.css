@@ -456,6 +456,10 @@ input.error {
   font-size: 8px;
   margin: 0 10px;
 }
+.text-30-bold {
+  font-size: 30px;
+  font-weight: bold;
+}
 .cursor-pointer:hover {
   cursor: pointer;
 }
