@@ -172,7 +172,7 @@ function displayCartItems(cartItemOBJ) {
         row.innerHTML= `
         <tr class="cart-item">
         <td>
-        <img src="${cartItemOBJ[key].image}" width=100>
+        <img src="${cartItemOBJ[key].image}" class="img-100">
         </td>
         <td> ${cartItemOBJ[key].title} </td>
         <td> ${cartItemOBJ[key].price} </td>
