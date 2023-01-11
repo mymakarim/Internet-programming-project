@@ -421,3 +421,15 @@ input.error {
 .cursor-pointer:hover {
   cursor: pointer;
 }
+
+.two-clmn{
+  width: 45%;
+  margin-top: 50px;
+  align-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.img-pics{
+
+}
