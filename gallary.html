@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shop Items | iShop</title>
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+
+    <header class="header" id="header">
+        <a href="index.html" class="logo">iShop</a>
+        <label id="menu-toggle" class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+          <li><a href="index.html#home">HOME</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#gallery">Gallery</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="contact.html">Contact</a></li>
+
+    <li class="submenu">
+        <a><div class="total-container"> <span id="total">0</span> <img src="img/cart.png" id="img-cart"></div></a>
+        <div id="shopping-cart">
+            <p id="emptycart">Empty Cart!</p>
+            <div id="notemptycart">
+                <table id="cart-content" class="u-full-width">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <button id="clear-cart" class="button u-full-width flex-center">Clear Cart</button>
+                <hr>
+                <div class="payment-card">
+                    <p><b>Choose your payment Method:</b></p>
+                    <div class="flex-start sm-flex-center">
+                        <div class="flex-start sm-flex-start">
+                            <input type="radio" id="mastercard" name="payment_method" value="mastercard">
+                            <label for="mastercard">Master Card</label>
+                        </div>
+                        &nbsp;
+                        &nbsp;
+                        <div class="flex-start sm-flex-start">
+                            <input type="radio" id="visa" name="payment_method" value="visa">
+                            <label for="visa">Visa Card</label>
+                        </div>
+                    </div>
+                    <p class="errorMessage" id="typeError">Please select a card type</p>
+                    <p><b>Name on the card:</b></p>
+                    <div class="flex-start">
+                        <input type="number" class="cardName" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" name="cardName1" id="cardName1">
+                        <input type="number" class="cardName" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" name="cardName2" id="cardName2">
+                        <input type="number" class="cardName" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" name="cardName3" id="cardName3">
+                        <input type="number" class="cardName" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="4" name="cardName4" id="cardName4">
+                    </div>
+                    <p class="errorMessage" id="cardNameError">Please enter a valid card name</p>
+                    <p>
+                        <b>Expiry date</b><br />
+                        <select id="exMonth" title="select a month">
+                        <option value="0">Enter month</option>
+                            <option value="01">January</option>
+                            <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+
+                        <select id="exYear" title="select a year">
+                         <option value="0">Enter year</option>
+                            <option value="2020">2020</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
+                            <option value="2031">2031</option>
+                        </select>
+                        </p>
+                        <p class="errorMessage" id="exError">The expiry date is before today's date.</p>
+
+                    <p><b>CVV:</b></p>
+                    <input type="text" name="cvv" id="cvv" maxlength="3" pattern="[0-9]{3}">
+                    <p class="errorMessage" id="cvvError">Please Enter a valid CVV</p>
+                </div>
+                <p class="totalPrice"><b>Total Items Price:</b> <span id="totalPrice">0</span> USD</p>
+                <p class="deliveryPrice"><b>Delivery Price:</b> <span id="deliveryPrice">0</span> USD</p>
+                <button id="checkout-cart" onclick="checkout()" class="button u-full-width flex-center">Checkout</button>
+            </div>
+        </div>
+</li>
+        </ul>
+      </header>
+
+
+    <div id="courses-list" class="container content">
+        <h1 id="heading" class="heading">Our team and students feedback</h1>
+
+        <div class="row">
+            <div class="four columns">
+                <div class="gallery">
+                    <a target="_blank" href="img/course2.jpg">
+                        <img src="img/course2.jpg" class="course-image u-full-width">
+                    </a>
+                    <div class="desc">Add a description of the image here</div>
+                </div> 
+            </div>
+
+            <div class="four columns">
+                <div class="gallery">
+                    <a target="_blank" href="img/course3.jpg">
+                        <img src="img/course3.jpg" class="course-image u-full-width">
+                    </a>
+                    <div class="desc">Add a description of the image here</div>
+                    
+                </div> 
+            </div>
+
+            <div class="four columns">
+                <div class="gallery">
+                    <a target="_blank" href="img/course2.jpg">
+                        <img src="img/course2.jpg" class="course-image u-full-width">
+                    </a>
+                    <div class="desc">Add a description of the image here</div>
+                   
+                    
+                </div>
+            </div>
+
+        </div> <!--.row-->
+        <div class="row">
+            <div class="four columns">
+                <div class="gallery">
+                    <a target="_blank" href="img/course2.jpg">
+                        <img src="img/course2.jpg" class="course-image u-full-width">
+                    </a>
+                    <div class="desc">Add a description of the image here</div>
+                    
+                </div> 
+            </div>
+
+            <div class="four columns">
+                <div class="gallery">
+                    <a target="_blank" href="img/course2.jpg">
+                        <img src="img/course2.jpg" class="course-image u-full-width">
+                    </a>
+                    <div class="desc">Add a description of the image here</div>
+                    
+                </div> 
+            </div>
+
+            <div class="four columns">
+                <div class="gallery">
+                    <a target="_blank" href="img/course2.jpg">
+                        <img src="img/course2.jpg" class="course-image u-full-width">
+                    </a>
+                    <div class="desc">Add a description of the image here</div>
+                   
+                </div> 
+            </div>
+
+        </div> <!--.row-->
+        <div class="row">
+            <div class="four columns">
+                <div class="gallery">
+                    <a target="_blank" href="img/course2.jpg">
+                        <img src="img/course2.jpg" class="course-image u-full-width">
+                    </a>
+                    <div class="desc">Add a description of the image here</div>
+                    
+                </div> 
+            </div>
+
+            <div class="four columns">
+                <div class="gallery">
+                    <a target="_blank" href="img/course2.jpg">
+                        <img src="img/course2.jpg" class="course-image u-full-width">
+                    </a>
+                    <div class="desc">Add a description of the image here</div>
+                </div> 
+            </div>
+
+            <div class="four columns">
+                <div class="gallery">
+                    <a target="_blank" href="img/course2.jpg">
+                        <img src="img/course2.jpg" class="course-image u-full-width">
+                    </a>
+                    <div class="desc">Add a description of the image here</div>
+                    
+                </div> 
+            </div>
+
+        </div> 
+
+
+
+    </div>
+
+    <footer id="footer" class="footer">
+        <div class="container">
+            <div class="row">
+                    <div class="four columns">
+                            <nav id="primary" class="menu">
+                                <a class="link" href="#">For Business</a>
+                                <a class="link" href="#">Become an Instructor</a>
+                                <a class="link" href="#">Mobile Applications</a>
+                                <a class="link" href="#">Support</a>
+                                <a class="link" href="#">Help</a>
+                            </nav>
+                    </div>
+                    <div class="four columns">
+                            <nav id="secondary" class="menu">
+                                <a class="link" href="#">About Us</a>
+                                <a class="link" href="#">Work with us</a>
+                                <a class="link" href="#">Blog</a>
+                            </nav>
+                    </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>
