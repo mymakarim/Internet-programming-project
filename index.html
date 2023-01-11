@@ -14,11 +14,11 @@
         <a href="index.html" class="logo">iShop</a>
         <label id="menu-toggle" class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
         <ul class="menu">
-          <li><a href="index.html#HOME">Home</a></li>
-          <li><a href="index.html#services">Services</a></li>
-          <li><a href="index.html#gallery">Gallery</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#instructors">Instructors</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
           <li><a href="shop.html">Shop</a></li>
-          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="contact.html">Contact</a></li>
 
     <li class="submenu">
         <a><div class="total-container"> <span id="total">0</span> <img src="img/cart.png" id="img-cart"></div></a>
@@ -110,14 +110,13 @@
         </ul>
       </header>
 
-
     <div id="hero" class="content">
         <div class="container">
             <div class="row">
                     <div class="six columns">
                         <div class="hero-content">
-                                <h2>Learn Something Today</h2>
-                                <p>Special Offer, any course 100</p>
+                                <h2>Shop Something Today</h2>
+                                <p>Special Offer, any item 100</p>
                         </div>
                     </div>
             </div>
@@ -128,55 +127,61 @@
         <div class="container">
             <div class="row">
                     <div class="four columns icon icon1">
-                        <p>Hundreds of Shop Items <br>
-                        Learn new skills</p>
+                        <p class="text-left">Hundreds of Shop Items <br>
+                        Buy new stuff</p>
                     </div>
                     <div class="four columns icon icon2">
-                        <p> Our Instructors are Experts<br>
-                        Learn at your own pace</p>
+                        <p class="text-left"> Our instructors are Experts<br>
+                        Buy whatever you want</p>
                     </div>
                     <div class="four columns icon icon3">
-                        <p>Lifetime access  to courses<br>
-                        Instructors available for chats</p>
+                        <p class="text-left">Lifetime access  to items<br>
+                        Instructors are available for chats</p>
                     </div>
             </div>
         </div>
 
     </div>
 
-    <div>
-        <div class="two-clmn" style="float: right;">
-            <h1>We share the knowledge</h1>
-            <p>Learners around the world are launching new careers, advancing in their fields, and enriching their lives.Leading companies use the same courses to help employees keep their skills fresh.</p>
-        </div> 
-        <div class="two-clmn" >
-            <img src="img/R.png" width="100%" >
-        </div>
-        <hr>
+    <div class="container content">
+        <div class="row">
+            <div class="">
+                <div class="flex-start">
+                    <img src="img/R.png" class="u-full-width">
+                    <div class="info-card u-full-width">
+                        <br>
+                        <h4 class="title text-30-bold">We share the knowledge</h4>
+                        <p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy...</p>
+                        <br>
+                        <a href="./gallery.html" class="button-primary button">Gallery</a>
+                    </div>
+                </div> <!--.card-->
+            </div>
+        </div> <!--.row-->
+
     </div>
-    <br>
 
     <br>
 
-    <div id="courses-list" class="container">
+    <div class="container text-center" id="instructors">
         <h1 id="heading" class="heading">Our Instructors</h1>
 
         <div class="row">
-            <div class="four columns" style="align-content: center;">
-               <img src="img/man1.jpg" style="border-radius: 50%; align-self: center; " height="250px" width="80%">
-               <h3 >Yahya Rahmani</h3>
+            <div class="four columns card text-center pt-30">
+               <img src="img/man1.jpg" class="img-responsive rounded max-w-180">
+               <h4 >Yahya Rahmani</h4>
                <p>Web Developer in iShop</p>
             </div>
 
-            <div class="four columns">
-                <img src="img/man1.jpg" style="border-radius: 50%;" height="250px" width="80%">
-                <h3 >Yahya Rahmani</h3>
+            <div class="four columns card text-center pt-30">
+                <img src="img/woman.jpg"  class="img-responsive rounded max-w-180">
+                <h4>Farzana Asadi</h4>
                 <p>Web Developer in iShop</p>
             </div>
 
-            <div class="four columns">
-                <img src="img/woman.jpg" style="border-radius: 50%;" height="250px" width="80%">
-                <h3>Farzana Asadi</h3>
+            <div class="four columns card text-center pt-30">
+                <img src="img/man1.jpg"  class="img-responsive rounded max-w-180">
+                <h4 >Yahya Rahmani</h4>
                 <p>Web Developer in iShop</p>
             </div>
 
@@ -185,6 +190,7 @@
 
 
     </div>
+
     <div id="courses-list" class="container content">
         <h1 id="heading" class="heading">Shop Items</h1>
 
@@ -253,15 +259,17 @@
             </div>
 
         </div> <!--.row-->
-        
-        <a class=" button-primary button input" href="shop.html" style="float: right;">See more items</a>
+        <div class="flex-center pt-30">
+            <a href="./shop.html" class="button-primary button input add-to-cart">Shop more</a>
         </div>
-       
 
-           
+    </div>
 
-         
-        
+
+
+
+
+
 
     <footer id="footer" class="footer">
         <div class="container">

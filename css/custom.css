@@ -472,6 +472,7 @@ input.error {
 }
 div.gallery {
   border: 1px solid #ccc;
+  margin-bottom: 10px;
 }
 
 div.gallery:hover {
@@ -488,6 +489,19 @@ div.desc {
   text-align: center;
 }
 
-* {
+/* * {
   box-sizing: border-box;
+} */
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.max-w-180 {
+  width: 180px;
+  height: 180px;
+}
+.pt-30 {
+  padding-top: 30px;
 }
