@@ -30,18 +30,18 @@
     margin-left: 0; }
 
   .one.column,
-  .one.columns                    { width: 4.66666666667%; }
-  .two.columns                    { width: 13.3333333333%; }
-  .three.columns                  { width: 22%;            }
-  .four.columns                   { width: 30.6666666667%; }
-  .five.columns                   { width: 39.3333333333%; }
-  .six.columns                    { width: 48%;            }
-  .seven.columns                  { width: 56.6666666667%; }
-  .eight.columns                  { width: 65.3333333333%; }
-  .nine.columns                   { width: 74.0%;          }
-  .ten.columns                    { width: 82.6666666667%; }
-  .eleven.columns                 { width: 91.3333333333%; }
-  .twelve.columns                 { width: 100%; margin-left: 0; }
+  .one.columns       { width: 4.66666666667%; }
+  .two.columns       { width: 13.3333333333%; }
+  .three.columns     { width: 22%;            }
+  .four.columns      { width: 30.6666666667%; }
+  .five.columns      { width: 39.3333333333%; }
+  .six.columns       { width: 48%;            }
+  .seven.columns     { width: 56.6666666667%; }
+  .eight.columns     { width: 65.3333333333%; }
+  .nine.columns      { width: 74.0%;          }
+  .ten.columns       { width: 82.6666666667%; }
+  .eleven.columns    { width: 91.3333333333%; }
+  .twelve.columns    { width: 100%; margin-left: 0; }
 
 }
 
@@ -58,8 +58,7 @@ body {
   color: #222; }
 
 
-/* Typography
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 2rem;
@@ -167,36 +166,7 @@ select {
   border-radius: 4px;
   box-shadow: none;
   box-sizing: border-box; }
-/* Removes awkward default styles on some inputs for iOS */
-input[type="email"],
-input[type="number"],
-input[type="text"],
-textarea {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none; }
-textarea {
-  min-height: 65px;
-  padding-top: 6px;
-  padding-bottom: 6px; }
-input[type="email"]:focus,
-input[type="number"]:focus,
-input[type="text"]:focus,
-textarea:focus,
-select:focus {
-  border: 1px solid #33C3F0;
-  outline: 0; }
-label {
-  display: block;
-  margin-bottom: .5rem;
-  font-weight: 600; }
-input[type="checkbox"],
-input[type="radio"] {
-  display: inline; }
-label > .label-body {
-  display: inline-block;
-  margin-left: .5rem;
-  font-weight: normal; }
+
 
 
 /* Spacing
