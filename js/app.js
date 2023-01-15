@@ -115,7 +115,7 @@ function getCourseInfo(course){
         image: course.querySelector('img').src,
         title:course.querySelector('h4').textContent,
         price: course.querySelector('.price span').textContent,
-        id: course.querySelector('a').getAttribute('data-id')
+        id: course.querySelector('a.add-to-cart').getAttribute('data-id')
 
     }
     addIntoCart(courseInfo);
@@ -158,7 +158,7 @@ function addIntoCart(course){
 
     //re-render cartItems
     // console.log("CART TIEM OBG IN ADDINTOCART: ");
-    // console.log(cartItemOBJ);
+    console.log(cartItemOBJ);
     displayCartItems(cartItemOBJ)
 }
 
